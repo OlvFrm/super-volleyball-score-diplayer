@@ -30,8 +30,11 @@ public:
     ledStrip_.init();
   }
 
-  void show(const GameState& gameState) {
-    unitsA_.put(gameState.score_);
+  void show(const GameState* gameState) {
+    if (gameState == nullptr) {
+      Serial.println("Null gamestate...");
+    }
+    unitsA_.put(gameState->getScoreA());
     ledStrip_.show();
   }
 };

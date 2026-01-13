@@ -1,7 +1,8 @@
 #include "scoreDisplayer.hpp"
+#include "stack.hpp"
 
 ScoreDisplayer displayer = ScoreDisplayer();
-GameState state = GameState();
+Stack stack = Stack();
 
 void setup() {
   Serial.begin(9600);
@@ -9,8 +10,27 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(state.score_);
-  displayer.show(state);
-  state.score_ = (state.score_ + 1) % 10;
-  delay(2000);
+
+  // Putting states
+  for (int i = 0; i < 10; i++) {
+    GameState* newState = new GameState(i, 0, false);
+    stack.push(newState);
+    displayer.show(stack.peek());
+    Serial.println(newState->getScoreA());
+    delay(2000);
+  }
+
+  // Removing states
+  for (int i = 0; i < 10; i++) {
+    GameState* oldState = stack.pop();
+    if (oldState != nullptr) {
+      displayer.show(oldState);
+      Serial.println(oldState->getScoreA());
+      delete oldState;
+    }
+    else {
+      Serial.println("WTF");
+    }
+    delay(2000);
+  }
 }
