@@ -2,15 +2,15 @@
 
 #include "button.hpp"
 
-#define BUTTON_A_PIN  1
-#define BUTTON_B_PIN  2
+#define BUTTON_A_PIN  2
+#define BUTTON_B_PIN  3
 
 
 class ButtonHandler {
 private:
 
   static constexpr unsigned long REPEAT_RATE = 200;
-  static constexpr unsigned long LONG_PRESS = 600;
+  static constexpr unsigned long LONG_PRESS = 1200;
 
   enum State {
     IDLE,
@@ -49,8 +49,8 @@ public:
 
   void init() {
     // Init button GPIO
-    pinMode(BUTTON_A_PIN, INPUT);
-    pinMode(BUTTON_B_PIN, INPUT);
+    pinMode(BUTTON_A_PIN, INPUT_PULLUP);
+    pinMode(BUTTON_B_PIN, INPUT_PULLUP);
   }
 
   void checkUserInput() {
