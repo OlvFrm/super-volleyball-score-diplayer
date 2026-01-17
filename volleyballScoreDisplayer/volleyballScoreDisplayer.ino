@@ -1,16 +1,22 @@
 #include "scoreDisplayer.hpp"
 #include "stack.hpp"
+#include "buttonHandler.hpp"
 
+ButtonHandler buttonHandler = ButtonHandler();
 ScoreDisplayer displayer = ScoreDisplayer();
 Stack stack = Stack();
 
 void setup() {
   Serial.begin(9600);
+  buttonHandler.init();
   displayer.init();
 }
 
 void loop() {
 
+  buttonHandler.checkUserInput();
+
+  /*
   // Putting states
   for (int i = 0; i < 10; i++) {
     GameState* newState = new GameState(i, 0, false);
@@ -33,4 +39,5 @@ void loop() {
     }
     delay(2000);
   }
+  */
 }

@@ -39,6 +39,7 @@ public:
 
     leds_ = (CRGB*)calloc(numLeds_, sizeof(CRGB));
     FastLED.addLeds<WS2812, LED_PIN, GRB>(leds_, numLeds_);
+    FastLED.setBrightness(10);
   }
 
   int getSize() {

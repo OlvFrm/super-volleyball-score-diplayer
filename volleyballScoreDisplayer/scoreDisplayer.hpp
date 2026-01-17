@@ -1,5 +1,5 @@
-#include "HardwareSerial.h"
 #pragma once
+#include "HardwareSerial.h"
 
 #include "ledStrip.hpp"
 #include "digit.hpp"
