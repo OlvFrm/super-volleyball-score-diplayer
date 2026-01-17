@@ -18,10 +18,18 @@
 
 
 class Digit : public LedDisplayBloc {
+private: 
+  CRGB color_;
+
 
 public:
   Digit()
-    : LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {}
+    : color_(CRGB::Red), LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {
+    }
+
+  void setColor(CRGB color) {
+    color_ = color;
+  }
 
   void put(int digit) {
     if (!isReady()) {
@@ -50,7 +58,7 @@ public:
     // Looping for all segments
     for (int segment = 0; segment < 7; segment++) {
 
-      CRGB color = segmentPatterns[digit][segment] == true ? CRGB::Red : CRGB::Black;
+      CRGB color = segmentPatterns[digit][segment] == true ? color_ : CRGB::Black;
 
       // Looping for all leds in the segment
       for (int led = 0; led < NUM_LEDS_PER_SEGMENT; led++) {
