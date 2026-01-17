@@ -18,18 +18,11 @@
 
 
 class Digit : public LedDisplayBloc {
-private: 
-  CRGB color_;
-
 
 public:
   Digit()
-    : color_(CRGB::Red), LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {
+    : LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {
     }
-
-  void setColor(CRGB color) {
-    color_ = color;
-  }
 
   void put(int digit) {
     if (!isReady()) {
