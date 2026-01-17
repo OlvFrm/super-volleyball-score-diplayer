@@ -20,7 +20,8 @@ public:
   /* Destructor iteratively deletes all elements of the Stack */
   ~Stack() {
     Node* nextNode;
-    while (count_ > 0) {
+
+    while (top_ != nullptr) {
       nextNode = top_->getNext();
       delete top_;
       top_ = nextNode;
@@ -29,12 +30,10 @@ public:
   }
 
   /* Push an element on top of the Stack */
-  Node* push(GameState* newState) {  // TODO maybe the Node shouldn't be accessible outside the stack.
+  void push(GameState* newState) {
     Node* newNode = new Node(newState, top_);
     top_ = newNode;
     count_++;
-
-    return newNode;
   }
 
   /* Pop the top element of the Stack */
