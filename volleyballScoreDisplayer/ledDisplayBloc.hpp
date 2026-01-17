@@ -13,7 +13,7 @@ protected:
 
 
   LedDisplayBloc(int size)
-    : ledOffset_(0), size_(size), color_(defaultColor), ledStrip_(nullptr), attached_(false) {}
+    :  size_(size), ledOffset_(0), ledStrip_(nullptr), attached_(false), color_(defaultColor) {}
 
   bool isReady() {
     return attached_ && (ledStrip_->getSize() != 0);
