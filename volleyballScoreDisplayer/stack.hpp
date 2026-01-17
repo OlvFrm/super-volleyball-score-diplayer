@@ -19,12 +19,12 @@ public:
 
   /* Destructor iteratively deletes all elements of the Stack */
   ~Stack() {
-    Node* nextNode;
+    Node* tempNode;
 
     while (top_ != nullptr) {
-      nextNode = top_->getNext();
-      delete top_;
-      top_ = nextNode;
+      tempNode = top_;
+      top_ = top_->getNext();
+      delete tempNode;
       count_--;
     }
   }
