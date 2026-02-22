@@ -2,6 +2,7 @@
 
 #include <FastLED.h>
 
+
 #define LED_PIN 5
 
 
@@ -17,7 +18,7 @@ public:
 
   ~LedStrip() {
     if (leds_ != nullptr) {
-      free(leds_);
+      delete[] leds_;
       leds_ = nullptr;
     }
   }
@@ -37,7 +38,7 @@ public:
       return;
     }
 
-    leds_ = (CRGB*)calloc(numLeds_, sizeof(CRGB));
+    leds_ = new CRGB[numLeds_];
     FastLED.addLeds<WS2812, LED_PIN, GRB>(leds_, numLeds_);
     FastLED.setBrightness(10);
   }

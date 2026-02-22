@@ -3,7 +3,7 @@
 
 class LedDisplayBloc {
 private:
-  static constexpr CRGB defaultColor = CRGB::Red;
+  const CRGB defaultColor = CRGB::Red;
 protected:
   const int size_;
   int ledOffset_;
