@@ -1,9 +1,9 @@
-#include "HardwareSerial.h"
 #pragma once
+#include "HardwareSerial.h"
 
 #include "ledStrip.hpp"
 #include "digit.hpp"
-#include "gameState.hpp"
+#include "state/gameState.hpp"
 
 
 
