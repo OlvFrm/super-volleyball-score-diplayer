@@ -18,10 +18,10 @@ public:
     : scoreA_(scoreA), scoreB_(scoreB), service_(service) {}
 
   /* Getters */
-  unsigned int getScoreA() {
+  unsigned int getScoreA() const {
     return scoreA_;
   }
-  unsigned int getScoreB() {
+  unsigned int getScoreB() const {
     return scoreB_;
   }
 };
