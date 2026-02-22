@@ -3,7 +3,7 @@
 
 #include "ledStrip.hpp"
 #include "digit.hpp"
-#include "gameState.hpp"
+#include "state/gameState.hpp"
 
 
 
