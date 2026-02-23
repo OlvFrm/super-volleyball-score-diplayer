@@ -2,9 +2,8 @@
 #include "ledStrip.hpp"
 
 class LedDisplayBloc {
-private:
-  const CRGB defaultColor = CRGB::Red;
-protected:
+
+  protected:
   const int size_;
   int ledOffset_;
   LedStrip* ledStrip_;
@@ -12,26 +11,10 @@ protected:
   CRGB color_;
 
 
-  LedDisplayBloc(int size)
-    :  size_(size), ledOffset_(0), ledStrip_(nullptr), attached_(false), color_(defaultColor) {}
-
-  bool isReady() {
-    return attached_ && (ledStrip_->getSize() != 0);
-  }
+  LedDisplayBloc(int size);
+  bool isReady();
 
 public:
-  void addTo(LedStrip& ledStrip) {
-    if (attached_) {
-      Serial.println("Bloc already attached...");
-      return;
-    }
-    ledStrip_ = &ledStrip;
-    ledOffset_ = ledStrip.getSize();
-    ledStrip.addBloc(size_);
-    attached_ = true;
-  }
-
-  void setColor(CRGB color) {
-    color_ = color;
-  }
+  void addTo(LedStrip& ledStrip);
+  void setColor(CRGB color);
 };

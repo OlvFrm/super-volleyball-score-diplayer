@@ -12,32 +12,20 @@ private:
   GameState* gameState_;
   /* Pointer to the next Node in the stack */
   Node* next_;
-
-  Node(GameState* gameState, Node* nextNode)
-    : gameState_(gameState), next_(nextNode) {
-  }
+  
+  
+  /* Node constructor*/
+  Node(GameState* gameState, Node* nextNode);
 
   /* Node destructor, deletes the GameState*/
-  ~Node() {
-    if (gameState_ != nullptr) {
-      delete gameState_;
-    }
-  }
+  ~Node();
 
   /* GameState getter */
-  GameState* getGameState() {
-    return gameState_;
-  }
+  GameState* getGameState();
 
   /* GameState getter but unlinks game state from Node */
-  GameState* popGameState() {
-    GameState* poppedGameState = gameState_;
-    gameState_ = nullptr;
-    return poppedGameState;
-  }
+  GameState* popGameState();
 
   /* Next Node getter */
-  Node* getNext() {
-    return next_;
-  }
+  Node* getNext();
 };

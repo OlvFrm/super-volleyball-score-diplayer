@@ -12,60 +12,21 @@ private:
 
 public:
   /* Construct an empty stack */
-  Stack() {
-    top_ = nullptr;
-    count_ = 0;
-  }
+  Stack();
 
   /* Destructor iteratively deletes all elements of the Stack */
-  ~Stack() {
-    Node* tempNode;
-
-    while (top_ != nullptr) {
-      tempNode = top_;
-      top_ = top_->getNext();
-      delete tempNode;
-      count_--;
-    }
-  }
+  ~Stack();
 
   /* Push an element on top of the Stack */
-  void push(GameState* newState) {
-    Node* newNode = new Node(newState, top_);
-    top_ = newNode;
-    count_++;
-  }
+  void push(GameState* newState);
 
   /* Pop the top element of the Stack */
-  GameState* pop() {
-    if (top_ == nullptr) {
-      return nullptr;
-    }
-
-    Node* temp = top_;
-    top_ = top_->getNext();
-    GameState* gameState = temp->popGameState();
-
-    count_--;
-
-    delete temp;
-    return gameState;
-  }
+  GameState* pop();
 
   /* Peek at the top element without removing it from the stack */
-  GameState* peek() {
-    if (top_ == nullptr) {
-      // Stack is Empty
-      return nullptr;
-    }
-    return top_->getGameState();
-  }
+  GameState* peek();
 
-  bool isEmpty() {
-    return top_ == nullptr;
-  }
+  bool isEmpty();
 
-  int size() {
-    return count_;
-  }
+  int size();
 };

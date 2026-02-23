@@ -14,14 +14,9 @@ private:
 
 public:
   /* Constructor that does nothing */
-  GameState(int scoreA, int scoreB, bool service)
-    : scoreA_(scoreA), scoreB_(scoreB), service_(service) {}
+  GameState(int scoreA, int scoreB, bool service);
 
   /* Getters */
-  unsigned int getScoreA() const {
-    return scoreA_;
-  }
-  unsigned int getScoreB() const {
-    return scoreB_;
-  }
+  unsigned int getScoreA() const;
+  unsigned int getScoreB() const;
 };

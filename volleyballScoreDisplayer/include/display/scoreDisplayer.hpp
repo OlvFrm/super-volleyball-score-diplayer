@@ -18,28 +18,9 @@ private:
   Digit tensB_;
 
 public:
-  ScoreDisplayer() {}
+  ScoreDisplayer();
 
-  void init() {
-    unitsA_.setColor(CRGB::Aqua);
-    tensA_.setColor(CRGB::Salmon);
-    unitsB_.setColor(CRGB::Tomato);
-    tensB_.setColor(CRGB::Pink);
-
-    // Choose bloc order here
-    unitsA_.addTo(ledStrip_);
-    tensA_.addTo(ledStrip_);
-    unitsB_.addTo(ledStrip_);
-    tensB_.addTo(ledStrip_);
-
-    ledStrip_.init();
-  }
-
-  void show(const GameState* gameState) {
-    if (gameState == nullptr) {
-      Serial.println("Null gamestate...");
-    }
-    unitsA_.put(gameState->getScoreA());
-    ledStrip_.show();
-  }
+  void init();
+  
+  void show(const GameState* gameState);
 };

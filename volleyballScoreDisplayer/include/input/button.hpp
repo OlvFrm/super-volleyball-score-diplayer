@@ -1,4 +1,6 @@
 #pragma once
+#include <Arduino.h>
+
 
 class Button {
 private:
@@ -12,27 +14,10 @@ private:
 
 public:
 
-  Button(uint8_t pin)
-    : pin_(pin) {}
+  Button(uint8_t pin);
 
-  void update(unsigned long now) {
-    bool isDown = digitalRead(pin_) == LOW;
+  void update(unsigned long now);
 
-    if (isDown && !pressed_ && (now - releaseTime_) > DEBOUNCE) {
-      pressed_ = true;
-      pressTime_ = now;
-    }
-
-    if (!isDown && pressed_ && (now - pressTime_) > DEBOUNCE) {
-      pressed_ = false;
-      releaseTime_ = now;
-    }
-  }
-
-  bool isPressed() const {
-    return pressed_;
-  }
-  unsigned long pressTime() const {
-    return pressTime_;
-  }
+  bool isPressed() const;
+  unsigned long pressTime() const;
 };
