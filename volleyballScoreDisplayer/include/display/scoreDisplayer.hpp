@@ -21,6 +21,4 @@ public:
   ScoreDisplayer();
 
   void init();
-  
-  void show(const GameState* gameState);
 };

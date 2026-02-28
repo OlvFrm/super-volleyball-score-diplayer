@@ -1,8 +1,8 @@
 #include "input/buttonHandler.hpp"
 #include <Arduino.h>
 
-#define BUTTON_A_PIN  2
-#define BUTTON_B_PIN  3
+#define BUTTON_LEFT_PIN  2
+#define BUTTON_WRITE_PIN  3
 
 
 
@@ -18,15 +18,15 @@ void ButtonHandler::SD() { Serial.println("SD: Double short"); }
 void ButtonHandler::LD() { Serial.println("LD: Double long"); }
 
 
-ButtonHandler::ButtonHandler(): b1_(BUTTON_A_PIN), b2_(BUTTON_B_PIN) {}
+ButtonHandler::ButtonHandler(): b1_(BUTTON_LEFT_PIN), b2_(BUTTON_WRITE_PIN) {}
 
 void ButtonHandler::init() {
     // Init button GPIO
-    pinMode(BUTTON_A_PIN, INPUT_PULLUP);
-    pinMode(BUTTON_B_PIN, INPUT_PULLUP);
+    pinMode(BUTTON_LEFT_PIN, INPUT_PULLUP);
+    pinMode(BUTTON_WRITE_PIN, INPUT_PULLUP);
 }
 
-void ButtonHandler::checkUserInput() {
+Event ButtonHandler::checkUserInput() {
     unsigned long now = millis();
 
     b1_.update(now);
@@ -48,15 +48,15 @@ void ButtonHandler::checkUserInput() {
         /* ---------- Button 1 ---------- */
         case State::B1_PRESSED:
         if (!b1_.isPressed()) {
-            S1();
             currentState_ = State::IDLE;
+            return Event::LEFT_SHORT;
         } else if (b2_.isPressed()) {
             doubleStart_ = now;
             currentState_ = State::BOTH;
         } else if ((now - b1_.pressTime()) > LONG_PRESS) {
-            L1();
             repeatLastTrigger_ = now;
             currentState_ = State::B1_HELD;
+            return Event::LEFT_LONG;
         }
         break;
 
@@ -64,23 +64,23 @@ void ButtonHandler::checkUserInput() {
         if (!b1_.isPressed()) {
             currentState_ = State::IDLE;
         } else if ((now - repeatLastTrigger_) > REPEAT_RATE) {
-            R1();
             repeatLastTrigger_ = now;
+            return Event::LEFT_REPEAT;
         }
         break;
 
         /* ---------- Button 2 ---------- */
         case State::B2_PRESSED:
         if (!b2_.isPressed()) {
-            S2();
             currentState_ = State::IDLE;
+            return Event::RIGHT_SHORT;
         } else if (b1_.isPressed()) {
             doubleStart_ = now;
             currentState_ = State::BOTH;
         } else if ((now - b2_.pressTime()) > LONG_PRESS) {
-            L2();
             repeatLastTrigger_ = now;
             currentState_ = State::B2_HELD;
+            return Event::RIGHT_LONG;
         }
         break;
 
@@ -88,19 +88,19 @@ void ButtonHandler::checkUserInput() {
         if (!b2_.isPressed()) {
             currentState_ = State::IDLE;
         } else if ((now - repeatLastTrigger_) > REPEAT_RATE) {
-            R2();
             repeatLastTrigger_ = now;
+            return Event::RIGHT_REPEAT;
         }
         break;
 
         /* ---------- Both buttons ---------- */
         case State::BOTH:
         if (!b1_.isPressed() || !b2_.isPressed()) {
-            SD();
             currentState_ = State::WAIT;
+            return Event::DOUBLE_SHORT;
         } else if ((now - doubleStart_) > LONG_PRESS) {
-            LD();
             currentState_ = State::WAIT;
+            return Event::DOUBLE_LONG;
         }
         break;
 
@@ -115,4 +115,6 @@ void ButtonHandler::checkUserInput() {
         Serial.println("What have you done?");
         break;
     }
+
+    return Event::NONE;
 }

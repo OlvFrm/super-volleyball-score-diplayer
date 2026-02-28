@@ -1,6 +1,7 @@
 #pragma once
 
 #include "button.hpp"
+#include "state/event.hpp"
 
 
 class ButtonHandler {
@@ -45,5 +46,5 @@ public:
 
   void init();
 
-  void checkUserInput();
+  Event checkUserInput();
 };

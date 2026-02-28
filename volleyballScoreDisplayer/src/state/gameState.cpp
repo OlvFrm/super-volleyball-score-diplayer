@@ -1,13 +1,9 @@
 #include "state/gameState.hpp"
 
 
-GameState::GameState(int scoreA, int scoreB, bool service):
-    scoreA_(scoreA), scoreB_(scoreB), service_(service) {}
+GameState::GameState(GameInfo info, bool mustBeSaved, GameManager* gameManager):
+    gameInfo_(info), mustBeSaved_(mustBeSaved), gameManager_(gameManager) {}
 
-/* Getters */
-unsigned int GameState::getScoreA() const {
-    return scoreA_;
-}
-unsigned int GameState::getScoreB() const {
-    return scoreB_;
-}
+GameState::~GameState() {}
+
+bool GameState::mustBeSaved() const { return mustBeSaved_; }

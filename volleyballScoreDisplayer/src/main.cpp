@@ -1,20 +1,14 @@
 #include <Arduino.h>
 
-#include "display/scoreDisplayer.hpp"
-#include "memory/stack.hpp"
-#include "input/buttonHandler.hpp"
+#include "state/gameManager.hpp"
 
-ButtonHandler buttonHandler = ButtonHandler();
-ScoreDisplayer displayer = ScoreDisplayer();
-Stack stack = Stack();
-
+GameManager game = GameManager();
 
 void setup() {
-  Serial.begin(9600);
-  buttonHandler.init();
-  displayer.init();
+    Serial.begin(9600);
 }
 
 void loop() {
-  buttonHandler.checkUserInput();
+    game.startGame();
+    /* Should never reach here */
 }

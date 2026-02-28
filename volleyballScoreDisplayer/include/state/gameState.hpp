@@ -1,22 +1,26 @@
 #pragma once
 
-/* Class that contains the state of the game. 
-  For now just for debugging purposes
-*/
+#include "gameInfo.hpp"
+#include "event.hpp"
+
+class GameManager;
+
+
+/* Class that contains the state of the game. */
 class GameState {
-private:
-  /* Score for team A */
-  unsigned int scoreA_;
-  /* Score for team B */
-  unsigned int scoreB_;
-  /* Team that serves the ball */
-  bool service_;
 
+protected:
+    const GameInfo gameInfo_;
+    const bool mustBeSaved_;
+    const GameManager* gameManager_;
+
+    GameState(GameInfo info, bool mustBeSaved, GameManager* gameManager);
+    
 public:
-  /* Constructor that does nothing */
-  GameState(int scoreA, int scoreB, bool service);
+    virtual ~GameState();
 
-  /* Getters */
-  unsigned int getScoreA() const;
-  unsigned int getScoreB() const;
+    virtual void onEnter() = 0;
+    virtual GameState* step(Event e) = 0;
+
+    bool mustBeSaved() const;
 };

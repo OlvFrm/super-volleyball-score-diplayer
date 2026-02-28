@@ -18,10 +18,3 @@ void ScoreDisplayer::init() {
     ledStrip_.init();
 }
 
-void ScoreDisplayer::show(const GameState* gameState) {
-    if (gameState == nullptr) {
-        Serial.println("Null gamestate...");
-    }
-    unitsA_.put(gameState->getScoreA());
-    ledStrip_.show();
-}
