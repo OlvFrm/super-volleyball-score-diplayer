@@ -27,6 +27,6 @@ public:
   GameState* peek();
 
   bool isEmpty();
-
+  
   int size();
 };

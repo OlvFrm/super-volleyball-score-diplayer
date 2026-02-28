@@ -17,15 +17,5 @@ private:
   /* Node constructor*/
   Node(GameState* gameState, Node* nextNode);
 
-  /* Node destructor, deletes the GameState*/
-  ~Node();
-
-  /* GameState getter */
-  GameState* getGameState();
-
-  /* GameState getter but unlinks game state from Node */
-  GameState* popGameState();
-
-  /* Next Node getter */
-  Node* getNext();
+  /* Stack class is responsible for memory management of Node */
 };

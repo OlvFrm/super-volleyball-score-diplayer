@@ -1,4 +1,5 @@
 #include "memory/stack.hpp"
+#include "state/gameState.hpp"
 
 
 Stack::Stack() {
@@ -6,13 +7,16 @@ Stack::Stack() {
     count_ = 0;
 }
 
-/* Destructor iteratively deletes all elements of the Stack */
+/* Destructor iteratively deletes all elements of the Stack*/
 Stack::~Stack() {
     Node* tempNode;
 
     while (top_ != nullptr) {
         tempNode = top_;
-        top_ = top_->getNext();
+        top_ = top_->next_;
+        if (tempNode->gameState_ != nullptr) {
+            delete tempNode->gameState_;
+        }
         delete tempNode;
         count_--;
     }
@@ -27,27 +31,26 @@ void Stack::push(GameState* newState) {
 
 /* Pop the top element of the Stack */
 GameState* Stack::pop() {
-    if (top_ == nullptr) {
+    if (isEmpty()) {
         return nullptr;
-}
+    }
 
-Node* temp = top_;
-    top_ = top_->getNext();
-    GameState* gameState = temp->popGameState();
+    Node* tempNode = top_;
+    top_ = top_->next_;
+    GameState* gameState = tempNode->gameState_;
 
     count_--;
 
-    delete temp;
+    delete tempNode;
     return gameState;
 }
 
 /* Peek at the top element without removing it from the stack */
 GameState* Stack::peek() {
-    if (top_ == nullptr) {
-        // Stack is Empty
+    if (isEmpty()) {
         return nullptr;
     }
-    return top_->getGameState();
+    return top_->gameState_;
 }
 
 bool Stack::isEmpty() {
