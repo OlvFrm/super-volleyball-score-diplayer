@@ -4,11 +4,11 @@
 #include "gameState.hpp"
 
 
-class StartState: public GameState {
+class EndOfSetState: public GameState {
 
 public:
 
-    StartState(GameManager* gameManager);
+    EndOfSetState(GameInfo info, GameManager* gameManager);
 
     void onEnter() override;
     GameState* step(Event e) override;

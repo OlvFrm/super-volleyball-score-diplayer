@@ -10,9 +10,9 @@ class GameManager;
 class GameState {
 
 protected:
-    const GameInfo gameInfo_;
+    GameInfo gameInfo_;
     const bool mustBeSaved_;
-    const GameManager* gameManager_;
+    GameManager* gameManager_;
 
     GameState(GameInfo info, bool mustBeSaved, GameManager* gameManager);
     
