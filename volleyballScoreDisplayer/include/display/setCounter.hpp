@@ -4,9 +4,9 @@
 
 
 /*
-Sets can be either in
- - Most Significant Set first (MSS)
- - Least Significant Set first (LSS)
+    Sets can be either in
+    - Least Significant Set first (LSS)
+    - Most Significant Set first (MSS) (reversed)
  */
 
 
