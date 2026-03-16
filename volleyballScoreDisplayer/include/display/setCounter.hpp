@@ -17,7 +17,8 @@ private:
 
 public:
 
-    SetCounter(bool reversed);
+    SetCounter();
 
+    void setReversed(bool reversed);
     void put(int setNumber);
 };
