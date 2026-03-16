@@ -47,8 +47,8 @@ void Digit::put(int digit) {
 
         // Looping for all leds in the segment
         for (int led = 0; led < NUM_LEDS_PER_SEGMENT; led++) {
-        ledStrip_->getLeds()[currentIndex] = color;
-        currentIndex++;
+            ledStrip_->getLeds()[currentIndex] = color;
+            currentIndex++;
         }
     }
 }

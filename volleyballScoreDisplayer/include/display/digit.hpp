@@ -19,6 +19,7 @@
 class Digit : public LedDisplayBloc {
 
 public:
+
   Digit();
 
   void put(int digit);
