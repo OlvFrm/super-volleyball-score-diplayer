@@ -14,16 +14,17 @@ class ScoreDisplayer {
 private:
     LedStrip ledStrip_;
 
-    Digit unitsA_;
-    Digit tensA_;
-    Digit unitsB_;
-    Digit tensB_;
+    Digit rightUnits_;
+    Digit rightTens_;
 
-    SetCounter setA_;
-    SetCounter setB_;
+    Digit leftUnits_;
+    Digit leftTens_;
 
-    ServeIndicator serveA_;
-    ServeIndicator serveB_;
+    SetCounter rightSet_;
+    SetCounter leftSet_;
+
+    ServeIndicator rightServe_;
+    ServeIndicator leftServe_;
 
 public:
     ScoreDisplayer();

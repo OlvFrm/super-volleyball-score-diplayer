@@ -2,7 +2,7 @@
 #include "state/playState.hpp"
 
 StartState::StartState(GameManager* gameManager):
-    GameState(GameInfo(0, 0, false), true, gameManager) {}
+    GameState(GameInfo(), true, gameManager) {}
 
 void StartState::onEnter() {
 
