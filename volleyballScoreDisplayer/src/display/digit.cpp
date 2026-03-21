@@ -16,12 +16,12 @@
 
 Digit::Digit() : LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {}
 
-void Digit::put(int digit) {
+void Digit::put(unsigned int digit, CRGB color) {
     if (!isReady()) {
         Serial.println("Bloc error...");
         return;
     }
-    if (digit < 0 || digit > 9) {
+    if (digit > 9) {
         Serial.println("Incorrect digit...");
         return;
     }
@@ -43,11 +43,11 @@ void Digit::put(int digit) {
     // Looping for all segments
     for (int segment = 0; segment < 7; segment++) {
 
-        CRGB color = segmentPatterns[digit][segment] == true ? color_ : CRGB::Black;
+        CRGB segmentColor = segmentPatterns[digit][segment] == true ? color : CRGB::Black;
 
         // Looping for all leds in the segment
         for (int led = 0; led < NUM_LEDS_PER_SEGMENT; led++) {
-            ledStrip_->getLeds()[currentIndex] = color;
+            ledStrip_->getLeds()[currentIndex] = segmentColor;
             currentIndex++;
         }
     }

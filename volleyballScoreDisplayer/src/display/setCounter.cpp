@@ -7,12 +7,12 @@ SetCounter::SetCounter():
 
 void SetCounter::setReversed(bool reversed) { reversed_ = reversed; }
 
-void SetCounter::put(int setNumber) {
+void SetCounter::put(unsigned int setNumber, CRGB color) {
     if (!isReady()) {
         Serial.println("Bloc error...");
         return;
     }
-    if (setNumber < 0 || setNumber > NUMBER_OF_SET) {
+    if (setNumber > NUMBER_OF_SET) {
         Serial.println("Incorrect set number...");
         return;
     }
@@ -23,7 +23,7 @@ void SetCounter::put(int setNumber) {
     for (int set = 1; set <= NUMBER_OF_SET; set++) {
 
         currentSetLed = reversed_ ? NUMBER_OF_SET - set +1 : set;
-        ledStrip_->getLeds()[currentIndex] = currentSetLed <= setNumber ? color_ : CRGB::Black;
+        ledStrip_->getLeds()[currentIndex] = currentSetLed <= setNumber ? color : CRGB::Black;
         
         currentIndex++;
     }

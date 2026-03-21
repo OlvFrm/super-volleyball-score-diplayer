@@ -6,32 +6,42 @@
 ScoreDisplayer::ScoreDisplayer() {}
 
 void ScoreDisplayer::init() {
-    // Choose color here
-    rightUnits_.setColor(CRGB::Aqua);
-    rightTens_.setColor(CRGB::Salmon);
-    rightSet_.setColor(DEFAULT_A_COLOR);
-    rightServe_.setColor(DEFAULT_A_COLOR);
-
-    leftUnits_.setColor(CRGB::Tomato);
-    leftTens_.setColor(CRGB::Pink);
-    leftSet_.setColor(DEFAULT_B_COLOR);
-    leftServe_.setColor(DEFAULT_B_COLOR);
 
     // Choose bloc order here
-    rightServe_.addTo(ledStrip_);
-    rightSet_.addTo(ledStrip_);
+    rightSets_.addTo(ledStrip_);
     rightUnits_.addTo(ledStrip_);
     rightTens_.addTo(ledStrip_);
+    serveIndicator_.addTo(ledStrip_);
     leftUnits_.addTo(ledStrip_);
     leftTens_.addTo(ledStrip_);
-    leftSet_.addTo(ledStrip_);
-    leftServe_.addTo(ledStrip_);
+    leftSets_.addTo(ledStrip_);
 
     ledStrip_.init();
 }
 
 
 void ScoreDisplayer::show(GameInfo gameInfo) {
-    // TODO when GameInfo is done
+    
+    /* LEFT */
+    Score leftScore = gameInfo.getScore(LEFT);
+    CRGB leftColor = gameInfo.getTeamASide() == LEFT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+
+    leftUnits_.put(leftScore.getPoints() % 10, leftColor);
+    leftTens_.put(leftScore.getPoints() / 10, leftColor);
+    leftSets_.put(leftScore.getSets(), leftColor);
+
+    /* RIGHT */
+    Score rightScore = gameInfo.getScore(RIGHT);
+    CRGB rightColor = gameInfo.getTeamASide() == RIGHT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+
+    rightUnits_.put(rightScore.getPoints() % 10, rightColor);
+    rightTens_.put(rightScore.getPoints() / 10, rightColor);
+    rightSets_.put(rightScore.getSets(), rightColor);
+
+    /* Serve */
+    CRGB serveColor = gameInfo.getServeSide() == gameInfo.getTeamASide() ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+    serveIndicator_.put(serveColor);
+
+    ledStrip_.show();
 }
 

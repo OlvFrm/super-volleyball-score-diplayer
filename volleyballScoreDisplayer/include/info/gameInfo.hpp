@@ -16,12 +16,16 @@ private:
     Side teamASide_;
 
 
-    Score getScore(Side side);
-    Score getOtherScore(Side side);
-
-public:
-
+    
+    public:
+    
     GameInfo();
+
+    /* Getters */
+    Score getScore(Side side) const;
+    Score getOtherScore(Side side) const;
+    Side getServeSide() const;
+    Side getTeamASide() const;
 
     /* Add a point to one team. Returns true if the set is won. */
     bool scorePoint(Side side);

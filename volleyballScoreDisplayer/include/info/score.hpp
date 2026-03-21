@@ -12,4 +12,6 @@ public:
     
     Score();
 
+    unsigned int getPoints() const;
+    unsigned int getSets() const;
 };

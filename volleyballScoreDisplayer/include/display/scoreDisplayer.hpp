@@ -20,11 +20,10 @@ private:
     Digit leftUnits_;
     Digit leftTens_;
 
-    SetCounter rightSet_;
-    SetCounter leftSet_;
+    SetCounter rightSets_;
+    SetCounter leftSets_;
 
-    ServeIndicator rightServe_;
-    ServeIndicator leftServe_;
+    ServeIndicator serveIndicator_;
 
 public:
     ScoreDisplayer();

@@ -1,19 +1,23 @@
 #include "info/gameInfo.hpp"
 
-
+#define DEFAULT_TEAM_A_SIDE LEFT
 
 GameInfo::GameInfo():
     scoreA_(Score()),
     scoreB_(Score()),
-    teamASide_(LEFT) {};
+    teamASide_(DEFAULT_TEAM_A_SIDE) {};
 
-Score GameInfo::getScore(Side side) {
+
+Score GameInfo::getScore(Side side) const {
     return teamASide_ == side ? scoreA_ : scoreB_;
 }
 
-Score GameInfo::getOtherScore(Side side) {
+Score GameInfo::getOtherScore(Side side) const {
     return teamASide_ == side ? scoreB_ : scoreA_;
 }
+
+Side GameInfo::getServeSide() const { return serveSide_; }
+Side GameInfo::getTeamASide() const { return teamASide_; }
 
 
 bool GameInfo::scorePoint(Side side) {

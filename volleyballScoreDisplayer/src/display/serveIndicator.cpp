@@ -4,12 +4,12 @@
 ServeIndicator::ServeIndicator():
     LedDisplayBloc(1) {}
 
-void ServeIndicator::put(bool serve) {
+void ServeIndicator::put(CRGB color) {
     if (!isReady()) {
         Serial.println("Bloc error...");
         return;
     }
 
-    ledStrip_->getLeds()[ledOffset_] = serve ? color_ : CRGB::Black;
+    ledStrip_->getLeds()[ledOffset_] = color;
 }
 
