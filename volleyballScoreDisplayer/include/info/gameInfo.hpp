@@ -1,22 +1,26 @@
 #pragma once
 
-#include "teamInfo.hpp"
+#include "score.hpp"
 #include "side.hpp"
 
 /* Class that contains the information of the game. */
 class GameInfo {
 private:
     /* Info for team A */
-    TeamInfo teamA_;
+    Score scoreA_;
     /* Info for team B */
-    TeamInfo teamB_;
+    Score scoreB_;
+    /* Info about which team has the serve */
+    Side serveSide_;
     /* Info about which team is on witch side */
     Side teamASide_;
 
-    TeamInfo getTeam(Side side);
-    TeamInfo getOtherTeam(Side side);
+
+    Score getScore(Side side);
+    Score getOtherScore(Side side);
 
 public:
+
     GameInfo();
 
     /* Add a point to one team. Returns true if the set is won. */

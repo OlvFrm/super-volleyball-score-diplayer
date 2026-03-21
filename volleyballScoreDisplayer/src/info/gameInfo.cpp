@@ -3,30 +3,30 @@
 
 
 GameInfo::GameInfo():
-    teamA_(TeamInfo()),
-    teamB_(TeamInfo()),
+    scoreA_(Score()),
+    scoreB_(Score()),
     teamASide_(LEFT) {};
 
-TeamInfo GameInfo::getTeam(Side side) {
-    return teamASide_ == side ? teamA_ : teamB_;
+Score GameInfo::getScore(Side side) {
+    return teamASide_ == side ? scoreA_ : scoreB_;
 }
 
-TeamInfo GameInfo::getOtherTeam(Side side) {
-    return teamASide_ == side ? teamB_ : teamA_;
+Score GameInfo::getOtherScore(Side side) {
+    return teamASide_ == side ? scoreB_ : scoreA_;
 }
 
 
 bool GameInfo::scorePoint(Side side) {
 
-    TeamInfo scoringTeam = getTeam(side);
-    TeamInfo otherTeam = getOtherTeam(side);
+    Score scoringTeam = getScore(side);
+    Score otherTeam = getOtherScore(side);
     
-    scoringTeam.score_++;
+    scoringTeam.points_++;
 
-    if (scoringTeam.score_ >= 25 &&
-        scoringTeam.score_ >= otherTeam.score_ + 2) {
+    if (scoringTeam.points_ >= 25 &&
+        scoringTeam.points_ >= otherTeam.points_ + 2) {
         
-        scoringTeam.set_++;
+        scoringTeam.sets_++;
         return true;
     }
 
