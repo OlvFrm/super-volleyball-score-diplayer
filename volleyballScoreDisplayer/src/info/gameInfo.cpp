@@ -12,6 +12,7 @@ GameInfo::GameInfo():
     teamASide_(DEFAULT_TEAM_A_SIDE) {};
 
 
+/* Getters */
 Score GameInfo::getScore(Side side) const {
     return teamASide_ == side ? scoreA_ : scoreB_;
 }
@@ -24,6 +25,18 @@ Side GameInfo::getServeSide() const { return serveSide_; }
 Side GameInfo::getTeamASide() const { return teamASide_; }
 
 
+/* Setters */
+void GameInfo::setScore(Score score, Side side) {
+    if(teamASide_ == side)
+        scoreA_ = score;
+    else
+        scoreB_ = score;
+}
+void GameInfo::setServeSide(Side side) { serveSide_ = side; }
+void GameInfo::setTeamASide(Side side) { teamASide_ = side; }
+
+
+/* Utils */
 void GameInfo::show() {
     
     /* LEFT */

@@ -31,6 +31,11 @@ private:
     Side getServeSide() const;
     Side getTeamASide() const;
 
+    /* Setters */
+    void setScore(Score score, Side side);
+    void setServeSide(Side side);
+    void setTeamASide(Side side);
+
     /* Puts it on displayer */
     void show();
 
