@@ -1,7 +1,16 @@
 #include "display/scoreDisplayer.hpp"
 
-#define DEFAULT_A_COLOR     CRGB::Red
-#define DEFAULT_B_COLOR     CRGB::Blue
+
+
+LedStrip ScoreDisplayer::ledStrip_ = LedStrip();
+Digit ScoreDisplayer::rightUnits_ = Digit();
+Digit ScoreDisplayer::rightTens_ = Digit();
+Digit ScoreDisplayer::leftUnits_ = Digit();
+Digit ScoreDisplayer::leftTens_ = Digit();
+SetCounter ScoreDisplayer::rightSets_ = SetCounter();
+SetCounter ScoreDisplayer::leftSets_ = SetCounter();
+ServeIndicator ScoreDisplayer::serveIndicator_ = ServeIndicator();
+
 
 ScoreDisplayer::ScoreDisplayer() {}
 
@@ -19,29 +28,42 @@ void ScoreDisplayer::init() {
     ledStrip_.init();
 }
 
-
-void ScoreDisplayer::show(GameInfo gameInfo) {
-    
-    /* LEFT */
-    Score leftScore = gameInfo.getScore(LEFT);
-    CRGB leftColor = gameInfo.getTeamASide() == LEFT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
-
-    leftUnits_.put(leftScore.getPoints() % 10, leftColor);
-    leftTens_.put(leftScore.getPoints() / 10, leftColor);
-    leftSets_.put(leftScore.getSets(), leftColor);
-
-    /* RIGHT */
-    Score rightScore = gameInfo.getScore(RIGHT);
-    CRGB rightColor = gameInfo.getTeamASide() == RIGHT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
-
-    rightUnits_.put(rightScore.getPoints() % 10, rightColor);
-    rightTens_.put(rightScore.getPoints() / 10, rightColor);
-    rightSets_.put(rightScore.getSets(), rightColor);
-
-    /* Serve */
-    CRGB serveColor = gameInfo.getServeSide() == gameInfo.getTeamASide() ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
-    serveIndicator_.put(serveColor);
-
+void ScoreDisplayer::show() {
     ledStrip_.show();
+}
+
+
+void ScoreDisplayer::setLeftColor(CRGB color) {
+    leftUnits_.setColor(color);
+    leftTens_.setColor(color);
+    leftSets_.setColor(color);
+}
+void ScoreDisplayer::setRightColor(CRGB color) {
+    rightUnits_.setColor(color);
+    rightTens_.setColor(color);
+    rightSets_.setColor(color);
+}
+void ScoreDisplayer::setServeColor(CRGB color) {
+    serveIndicator_.setColor(color);
+}
+
+void ScoreDisplayer::setLeftPoints(unsigned int points) {
+    leftUnits_.put(points % 10);
+    leftTens_.put(points / 10);
+}
+void ScoreDisplayer::setRightPoints(unsigned int points) {
+    rightUnits_.put(points % 10);
+    rightTens_.put(points / 10);
+}
+
+void ScoreDisplayer::setLeftSets(unsigned int sets) {
+    leftSets_.put(sets);
+}
+void ScoreDisplayer::setRightSets(unsigned int sets) {
+    rightSets_.put(sets);
+}
+
+void ScoreDisplayer::setServeShow(bool show) {
+    serveIndicator_.put(show);
 }
 

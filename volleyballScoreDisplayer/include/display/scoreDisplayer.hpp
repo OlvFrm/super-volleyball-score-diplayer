@@ -12,22 +12,37 @@
 class ScoreDisplayer {
 
 private:
-    LedStrip ledStrip_;
+    static LedStrip ledStrip_;
 
-    Digit rightUnits_;
-    Digit rightTens_;
+    static Digit rightUnits_;
+    static Digit rightTens_;
 
-    Digit leftUnits_;
-    Digit leftTens_;
+    static Digit leftUnits_;
+    static Digit leftTens_;
 
-    SetCounter rightSets_;
-    SetCounter leftSets_;
+    static SetCounter rightSets_;
+    static SetCounter leftSets_;
+ 
+    static ServeIndicator serveIndicator_;
 
-    ServeIndicator serveIndicator_;
-
-public:
+    /* Make the class impossible to construct. Static use only */
     ScoreDisplayer();
 
-    void init();
-    void show(GameInfo gameInfo);
+public:
+
+    static void init();
+    static void show();
+
+    static void setLeftColor(CRGB color);
+    static void setRightColor(CRGB color);
+    static void setServeColor(CRGB color);
+
+    static void setLeftPoints(unsigned int points);
+    static void setRightPoints(unsigned int points);
+
+    static void setLeftSets(unsigned int sets);
+    static void setRightSets(unsigned int sets);
+
+    static void setServeShow(bool show);
+    
 };

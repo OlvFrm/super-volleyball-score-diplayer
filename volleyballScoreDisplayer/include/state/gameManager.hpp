@@ -11,7 +11,6 @@ class GameManager {
 
 private:
 
-    ScoreDisplayer displayer_;
     ButtonHandler buttonHandler_;
     Stack history_;
     GameState* currentState_;
@@ -22,4 +21,5 @@ public:
     ~GameManager();
 
     void startGame();
+
 };

@@ -1,15 +1,18 @@
 #include "display/serveIndicator.hpp"
 
+#define SERVE_LED_NUMBER    1
 
 ServeIndicator::ServeIndicator():
-    LedDisplayBloc(1) {}
+    LedDisplayBloc(SERVE_LED_NUMBER) {}
 
-void ServeIndicator::put(CRGB color) {
+void ServeIndicator::put(bool show) {
     if (!isReady()) {
         Serial.println("Bloc error...");
         return;
     }
 
-    ledStrip_->getLeds()[ledOffset_] = color;
+    for (int i = 0; i < SERVE_LED_NUMBER; i++) {
+        ledStrip_->getLeds()[ledOffset_ + i] = show ? color_ : CRGB::Black;
+    }
 }
 

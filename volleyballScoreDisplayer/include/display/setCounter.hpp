@@ -20,5 +20,5 @@ public:
     SetCounter();
 
     void setReversed(bool reversed);
-    void put(unsigned int setNumber, CRGB color);
+    void put(unsigned int setNumber);
 };

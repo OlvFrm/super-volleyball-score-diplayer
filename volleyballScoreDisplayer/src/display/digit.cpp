@@ -16,7 +16,7 @@
 
 Digit::Digit() : LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {}
 
-void Digit::put(unsigned int digit, CRGB color) {
+void Digit::put(unsigned int digit) {
     if (!isReady()) {
         Serial.println("Bloc error...");
         return;
@@ -43,7 +43,7 @@ void Digit::put(unsigned int digit, CRGB color) {
     // Looping for all segments
     for (int segment = 0; segment < 7; segment++) {
 
-        CRGB segmentColor = segmentPatterns[digit][segment] == true ? color : CRGB::Black;
+        CRGB segmentColor = segmentPatterns[digit][segment] == true ? color_ : CRGB::Black;
 
         // Looping for all leds in the segment
         for (int led = 0; led < NUM_LEDS_PER_SEGMENT; led++) {

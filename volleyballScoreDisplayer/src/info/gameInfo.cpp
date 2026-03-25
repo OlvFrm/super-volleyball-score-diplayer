@@ -1,6 +1,10 @@
 #include "info/gameInfo.hpp"
+#include "display/scoreDisplayer.hpp"
+
 
 #define DEFAULT_TEAM_A_SIDE LEFT
+
+
 
 GameInfo::GameInfo():
     scoreA_(Score()),
@@ -19,6 +23,32 @@ Score GameInfo::getOtherScore(Side side) const {
 Side GameInfo::getServeSide() const { return serveSide_; }
 Side GameInfo::getTeamASide() const { return teamASide_; }
 
+
+void GameInfo::show() {
+    
+    /* LEFT */
+    Score leftScore = getScore(LEFT);
+    CRGB leftColor = teamASide_ == LEFT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+
+    ScoreDisplayer::setLeftColor(leftColor);
+    ScoreDisplayer::setLeftPoints(leftScore.points_);
+    ScoreDisplayer::setLeftSets(leftScore.sets_);
+
+    /* RIGHT */
+    Score rightScore = getScore(RIGHT);
+    CRGB rightColor = teamASide_ == RIGHT ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+
+    ScoreDisplayer::setRightColor(rightColor);
+    ScoreDisplayer::setRightPoints(rightScore.points_);
+    ScoreDisplayer::setRightSets(rightScore.sets_);
+
+    /* Serve */
+    CRGB serveColor = serveSide_ == teamASide_ ? DEFAULT_A_COLOR : DEFAULT_B_COLOR;
+    ScoreDisplayer::setServeColor(serveColor);
+    ScoreDisplayer::setServeShow(true);
+
+    ScoreDisplayer::show();
+}
 
 bool GameInfo::scorePoint(Side side) {
 

@@ -1,6 +1,7 @@
 #include "state/endOfSetState.hpp"
 #include "state/playState.hpp"
 
+#include "state/gameManager.hpp"
 
 EndOfSetState::EndOfSetState(GameInfo info, GameManager* gameManager):
     GameState(info, true, gameManager) {}
@@ -8,7 +9,7 @@ EndOfSetState::EndOfSetState(GameInfo info, GameManager* gameManager):
 void EndOfSetState::onEnter() {
 
     // Print game info
-    // TODO
+    gameInfo_.show();
     
 }
 

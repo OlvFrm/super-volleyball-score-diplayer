@@ -3,7 +3,7 @@
 
 
 LedDisplayBloc::LedDisplayBloc(int size):
-            size_(size), ledOffset_(0), ledStrip_(nullptr), attached_(false) {}
+            size_(size), ledOffset_(0), ledStrip_(nullptr), attached_(false), color_(CRGB::Black) {}
 
 
 bool LedDisplayBloc::isReady() {
@@ -20,5 +20,9 @@ void LedDisplayBloc::addTo(LedStrip& ledStrip) {
     ledOffset_ = ledStrip.getSize();
     ledStrip.addBloc(size_);
     attached_ = true;
+}
+
+void LedDisplayBloc::setColor(CRGB color) {
+    color_ = color;
 }
 

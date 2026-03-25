@@ -22,5 +22,5 @@ public:
 
   Digit();
 
-  void put(unsigned int digit, CRGB color);
+  void put(unsigned int digit);
 };

@@ -13,7 +13,7 @@ GameManager::~GameManager() {
 }
 
 void GameManager::startGame() {
-    displayer_.init();
+    ScoreDisplayer::init();
     buttonHandler_.init();
 
     currentState_->onEnter();

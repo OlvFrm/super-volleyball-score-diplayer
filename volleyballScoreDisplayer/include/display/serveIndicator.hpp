@@ -10,5 +10,5 @@ public:
 
     ServeIndicator();
 
-    void put(CRGB color);
+    void put(bool show);
 };

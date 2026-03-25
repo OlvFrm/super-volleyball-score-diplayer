@@ -3,6 +3,10 @@
 #include "score.hpp"
 #include "side.hpp"
 
+
+#define DEFAULT_A_COLOR     CRGB::Red
+#define DEFAULT_B_COLOR     CRGB::Blue
+
 /* Class that contains the information of the game. */
 class GameInfo {
 private:
@@ -26,6 +30,9 @@ private:
     Score getOtherScore(Side side) const;
     Side getServeSide() const;
     Side getTeamASide() const;
+
+    /* Puts it on displayer */
+    void show();
 
     /* Add a point to one team. Returns true if the set is won. */
     bool scorePoint(Side side);

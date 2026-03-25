@@ -1,13 +1,15 @@
 #include "state/startState.hpp"
 #include "state/playState.hpp"
 
+#include "state/gameManager.hpp"
+
 StartState::StartState(GameManager* gameManager):
     GameState(GameInfo(), true, gameManager) {}
 
 void StartState::onEnter() {
 
     // Print game info (all zeros)
-    // TODO
+    gameInfo_.show();
 
 }
 

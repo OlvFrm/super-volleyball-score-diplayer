@@ -8,6 +8,7 @@ class LedDisplayBloc {
   int ledOffset_;
   LedStrip* ledStrip_;
   bool attached_;
+  CRGB color_;
 
 
   LedDisplayBloc(int size);
@@ -15,4 +16,5 @@ class LedDisplayBloc {
 
 public:
   void addTo(LedStrip& ledStrip);
+  void setColor(CRGB color);
 };
