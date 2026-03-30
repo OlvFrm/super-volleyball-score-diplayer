@@ -14,6 +14,16 @@ void PlayState::onEnter() {
 }
 
 
+GameState* PlayState::scorePoint(Side side) {
+    GameInfo nextInfo = GameInfo(gameInfo_); // Copy current game info
+    bool setWon = nextInfo.scorePoint(side);
+
+    if (setWon) {
+        return new EndOfSetState(nextInfo, gameManager_); 
+    }
+    return new PlayState(nextInfo, gameManager_); 
+}
+
 GameState* PlayState::step(Event e) {
 
     // Just wait
@@ -23,29 +33,13 @@ GameState* PlayState::step(Event e) {
     case Event::LEFT_SHORT:
     case Event::LEFT_LONG:
     case Event::LEFT_REPEAT: {
-        // Increment point for left team and check if set is won
-        GameInfo nextInfo = GameInfo(gameInfo_); // Copy current game info
-        bool setWon = nextInfo.scorePoint(LEFT);
-
-        if (setWon) {
-            return new EndOfSetState(nextInfo, gameManager_); 
-        } else {
-            return new PlayState(nextInfo, gameManager_); 
-        }
+        return scorePoint(LEFT);        
     }
     
     case Event::RIGHT_SHORT:
     case Event::RIGHT_LONG:
     case Event::RIGHT_REPEAT: {
-        // Increment point for right team and check if set is won
-        GameInfo nextInfo = GameInfo(gameInfo_); // Copy current game info
-        bool setWon = nextInfo.scorePoint(RIGHT);
-    
-        if (setWon) {
-            return new EndOfSetState(nextInfo, gameManager_); 
-        } else {
-            return new PlayState(nextInfo, gameManager_); 
-        }
+        return scorePoint(RIGHT);
     }
 
     default:
