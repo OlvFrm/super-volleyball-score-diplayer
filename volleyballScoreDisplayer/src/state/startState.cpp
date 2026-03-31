@@ -21,7 +21,7 @@ void StartState::onEnter() {
 GameState* StartState::selectServe(Side side) {
 
     GameInfo newInfo = GameInfo(gameInfo_);
-    newInfo.setServeSide(side);
+    newInfo.setServeSide(side, true);
 
     return new PlayState(newInfo, gameManager_);
 }

@@ -19,7 +19,7 @@ GameState* PlayState::scorePoint(Side side) {
     bool setWon = nextInfo.scorePoint(side);
 
     if (setWon) {
-        return new EndOfSetState(nextInfo, gameManager_); 
+        return new EndOfSetState(nextInfo, side, gameManager_); 
     }
     return new PlayState(nextInfo, gameManager_); 
 }

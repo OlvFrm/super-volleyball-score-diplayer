@@ -4,7 +4,7 @@
 
 #define DEFAULT_TEAM_A_SIDE LEFT
 
-
+Side GameInfo::startSetServeSide_ = LEFT; // Will be overwritten in StartState 
 
 GameInfo::GameInfo():
     scoreA_(Score()),
@@ -32,8 +32,13 @@ void GameInfo::setScore(Score score, Side side) {
     else
         scoreB_ = score;
 }
-void GameInfo::setServeSide(Side side) { serveSide_ = side; }
-void GameInfo::setTeamASide(Side side) { teamASide_ = side; }
+void GameInfo::setServeSide(Side side, bool startSet) {
+    serveSide_ = side;
+    if (startSet) startSetServeSide_ = side;
+}
+void GameInfo::setTeamASide(Side side) {
+    teamASide_ = side;
+}
 
 
 /* Utils */
@@ -78,4 +83,15 @@ bool GameInfo::scorePoint(Side side) {
     }
 
     return false;
+}
+
+
+void GameInfo::startNewSet() {
+    scoreA_.points_ = 0;
+    scoreB_.points_ = 0;
+
+    // Change sides
+    teamASide_ = teamASide_ == LEFT ? RIGHT : LEFT;
+    startSetServeSide_ = startSetServeSide_ == LEFT ? RIGHT : LEFT;
+    serveSide_ = startSetServeSide_;
 }
