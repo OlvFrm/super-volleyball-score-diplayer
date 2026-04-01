@@ -68,7 +68,7 @@ void GameInfo::show() {
     ScoreDisplayer::show();
 }
 
-bool GameInfo::scorePoint(Side side) {
+bool GameInfo::scorePoint(Side side) { // TODO handle switch side on third set!
 
     Score scoringTeam = getScore(side);
     Score otherTeam = getOtherScore(side);
