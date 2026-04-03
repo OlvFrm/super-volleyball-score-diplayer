@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gameInfo.hpp"
+#include "info/gameInfo.hpp"
 #include "event.hpp"
 
 class GameManager;

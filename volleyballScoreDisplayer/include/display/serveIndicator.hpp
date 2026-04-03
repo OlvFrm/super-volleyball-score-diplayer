@@ -10,5 +10,5 @@ public:
 
     ServeIndicator();
 
-    void put(bool serve);
+    void put(bool show);
 };

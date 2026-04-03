@@ -6,6 +6,9 @@
 
 class PlayState: public GameState {
 
+private:
+    GameState* scorePoint(Side side);
+
 public:
 
     PlayState(GameInfo info, GameManager* gameManager);

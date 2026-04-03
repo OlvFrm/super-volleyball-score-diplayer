@@ -22,5 +22,5 @@ public:
 
   Digit();
 
-  void put(int digit);
+  void put(unsigned int digit);
 };

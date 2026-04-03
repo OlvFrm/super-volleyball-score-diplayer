@@ -6,6 +6,12 @@
 
 class StartState: public GameState {
 
+private:
+    long lastBlink_;
+    bool useTeamAColor_;
+
+    GameState* selectServe(Side side);
+
 public:
 
     StartState(GameManager* gameManager);
