@@ -68,14 +68,27 @@ void GameInfo::show() {
     ScoreDisplayer::show();
 }
 
-bool GameInfo::scorePoint(Side side) { // TODO handle switch side on third set!
+bool GameInfo::scorePoint(Side side) {
 
     Score scoringTeam = getScore(side);
     Score otherTeam = getOtherScore(side);
     
     scoringTeam.points_++;
 
-    if (scoringTeam.points_ >= 25 &&
+    unsigned int pointLimit = 25;
+    
+    if (scoreA_.sets_ + scoreB_.sets_ + 1 == 5) {
+        // Last set
+        pointLimit = 15;
+
+        // Check for side switching
+        if (scoringTeam.points_ == 8 && otherTeam.points_ < 8) {
+            switchSide(teamASide_);
+            switchSide(serveSide_);
+        }
+    }
+
+    if (scoringTeam.points_ >= pointLimit &&
         scoringTeam.points_ >= otherTeam.points_ + 2) {
         
         scoringTeam.sets_++;
@@ -91,7 +104,7 @@ void GameInfo::startNewSet() {
     scoreB_.points_ = 0;
 
     // Change sides
-    teamASide_ = teamASide_ == LEFT ? RIGHT : LEFT;
-    startSetServeSide_ = startSetServeSide_ == LEFT ? RIGHT : LEFT;
+    switchSide(teamASide_);
+    switchSide(startSetServeSide_);
     serveSide_ = startSetServeSide_;
 }
