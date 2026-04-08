@@ -19,7 +19,29 @@ void GameManager::startGame() {
     currentState_->onEnter();
     while(1) {
         Event e = buttonHandler_.checkUserInput();
-        GameState* nextState = currentState_->step(e);
+        GameState* nextState;
+
+        // Handle common behaviour
+        switch (e) {
+            case Event::DOUBLE_SHORT: {
+                // Ctrl-Z
+                nextState = history_.pop();
+                currentState_->setSaveMode(false);
+                break;
+            }
+            
+            case Event::DOUBLE_LONG: {
+                // Full reset
+                history_.reset();
+                nextState = new StartState(this);
+                currentState_->setSaveMode(false);
+                break;
+            }
+
+            default:
+                nextState = currentState_->step(e);
+                break;
+            }
 
         if (nextState != nullptr) {
             // Save if necessary or free memory

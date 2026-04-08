@@ -26,6 +26,9 @@ public:
   /* Peek at the top element without removing it from the stack */
   GameState* peek();
 
+  /* Empty the stack */
+  void reset();
+
   bool isEmpty();
   
   int size();

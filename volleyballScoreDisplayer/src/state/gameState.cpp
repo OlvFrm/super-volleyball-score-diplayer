@@ -7,3 +7,4 @@ GameState::GameState(GameInfo info, bool mustBeSaved, GameManager* gameManager):
 GameState::~GameState() {}
 
 bool GameState::mustBeSaved() const { return mustBeSaved_; }
+void GameState::setSaveMode(bool mustBeSaved) { mustBeSaved_ = mustBeSaved; }

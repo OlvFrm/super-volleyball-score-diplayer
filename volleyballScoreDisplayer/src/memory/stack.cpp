@@ -9,17 +9,7 @@ Stack::Stack() {
 
 /* Destructor iteratively deletes all elements of the Stack*/
 Stack::~Stack() {
-    Node* tempNode;
-
-    while (top_ != nullptr) {
-        tempNode = top_;
-        top_ = top_->next_;
-        if (tempNode->gameState_ != nullptr) {
-            delete tempNode->gameState_;
-        }
-        delete tempNode;
-        count_--;
-    }
+    reset();
 }
 
 /* Push an element on top of the Stack */
@@ -51,6 +41,21 @@ GameState* Stack::peek() {
         return nullptr;
     }
     return top_->gameState_;
+}
+
+/* Empty the stack */
+void Stack::reset() {
+    Node* tempNode;
+
+    while (top_ != nullptr) {
+        tempNode = top_;
+        top_ = top_->next_;
+        if (tempNode->gameState_ != nullptr) {
+            delete tempNode->gameState_;
+        }
+        delete tempNode;
+        count_--;
+    }
 }
 
 bool Stack::isEmpty() {

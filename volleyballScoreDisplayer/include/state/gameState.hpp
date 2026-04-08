@@ -11,7 +11,7 @@ class GameState {
 
 protected:
     GameInfo gameInfo_;
-    const bool mustBeSaved_;
+    bool mustBeSaved_;
     GameManager* gameManager_;
 
     GameState(GameInfo info, bool mustBeSaved, GameManager* gameManager);
@@ -23,4 +23,5 @@ public:
     virtual GameState* step(Event e) = 0;
 
     bool mustBeSaved() const;
+    void setSaveMode(bool mustBeSaved);
 };
