@@ -1,4 +1,6 @@
 #include "display/digit.hpp"
+#include "tools/log.hpp"
+
 
 #define NUM_LEDS_PER_SEGMENT 2
 
@@ -18,11 +20,11 @@ Digit::Digit() : LedDisplayBloc(7 * NUM_LEDS_PER_SEGMENT) {}
 
 void Digit::put(unsigned int digit) {
     if (!isReady()) {
-        Serial.println("Bloc error...");
+        LOG_ERROR("Bloc error...");
         return;
     }
     if (digit > 9) {
-        Serial.println("Incorrect digit...");
+        LOG_ERROR("Incorrect digit...");
         return;
     }
 

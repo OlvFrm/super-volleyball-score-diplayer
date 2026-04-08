@@ -1,4 +1,5 @@
 #include "display/serveIndicator.hpp"
+#include "tools/log.hpp"
 
 #define SERVE_LED_NUMBER    1
 
@@ -7,7 +8,7 @@ ServeIndicator::ServeIndicator():
 
 void ServeIndicator::put(bool show) {
     if (!isReady()) {
-        Serial.println("Bloc error...");
+        LOG_ERROR("Bloc error...");
         return;
     }
 

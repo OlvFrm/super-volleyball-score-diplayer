@@ -1,4 +1,5 @@
 #include "display/ledStrip.hpp"
+#include "tools/log.hpp"
 
 
 #define LED_PIN 5
@@ -20,11 +21,11 @@ void LedStrip::addBloc(int blocSize) {
 void LedStrip::init() {
     // Init RGB LEDs strip
     if (leds_ != nullptr) {
-        Serial.println("Must init LedStrip only once...");
+        LOG_ERROR("Must init LedStrip only once...");
         return;
     }
     if (numLeds_ == 0) {
-        Serial.println("Need at least one bloc...");
+        LOG_ERROR("Need at least one bloc...");
         return;
     }
 

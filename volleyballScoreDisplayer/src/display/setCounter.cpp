@@ -1,4 +1,5 @@
 #include "display/setCounter.hpp"
+#include "tools/log.hpp"
 
 #define NUMBER_OF_SET   3
 
@@ -9,11 +10,11 @@ void SetCounter::setReversed(bool reversed) { reversed_ = reversed; }
 
 void SetCounter::put(unsigned int setNumber) {
     if (!isReady()) {
-        Serial.println("Bloc error...");
+        LOG_ERROR("Bloc error...");
         return;
     }
     if (setNumber > NUMBER_OF_SET) {
-        Serial.println("Incorrect set number...");
+        LOG_ERROR("Incorrect set number...");
         return;
     }
 

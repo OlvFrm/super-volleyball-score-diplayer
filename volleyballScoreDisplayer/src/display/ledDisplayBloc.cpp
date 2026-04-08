@@ -1,5 +1,5 @@
 #include "display/ledDisplayBloc.hpp"
-
+#include "tools/log.hpp"
 
 
 LedDisplayBloc::LedDisplayBloc(int size):
@@ -13,7 +13,7 @@ bool LedDisplayBloc::isReady() {
  
 void LedDisplayBloc::addTo(LedStrip& ledStrip) {
     if (attached_) {
-        Serial.println("Bloc already attached...");
+        LOG_ERROR("Bloc already attached...");
         return;
     }
     ledStrip_ = &ledStrip;

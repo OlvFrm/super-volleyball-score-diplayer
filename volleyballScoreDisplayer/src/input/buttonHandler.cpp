@@ -1,21 +1,23 @@
 #include "input/buttonHandler.hpp"
 #include <Arduino.h>
+#include "tools/log.hpp"
+
 
 #define BUTTON_LEFT_PIN  2
 #define BUTTON_WRITE_PIN  3
 
 
 
-void ButtonHandler::S1() { Serial.println("S1: Button 1 short"); }
-void ButtonHandler::L1() { Serial.println("L1: Button 1 long"); }
-void ButtonHandler::R1() { Serial.println("R1: Button 1 repeat"); }
+void ButtonHandler::S1() { LOG_DEBUG("S1: Button 1 short"); }
+void ButtonHandler::L1() { LOG_DEBUG("L1: Button 1 long"); }
+void ButtonHandler::R1() { LOG_DEBUG("R1: Button 1 repeat"); }
 
-void ButtonHandler::S2() { Serial.println("S2: Button 2 short"); }
-void ButtonHandler::L2() { Serial.println("L2: Button 2 long"); }
-void ButtonHandler::R2() { Serial.println("R2: Button 2 repeat"); }
+void ButtonHandler::S2() { LOG_DEBUG("S2: Button 2 short"); }
+void ButtonHandler::L2() { LOG_DEBUG("L2: Button 2 long"); }
+void ButtonHandler::R2() { LOG_DEBUG("R2: Button 2 repeat"); }
 
-void ButtonHandler::SD() { Serial.println("SD: Double short"); }
-void ButtonHandler::LD() { Serial.println("LD: Double long"); }
+void ButtonHandler::SD() { LOG_DEBUG("SD: Double short"); }
+void ButtonHandler::LD() { LOG_DEBUG("LD: Double long"); }
 
 
 ButtonHandler::ButtonHandler(): b1_(BUTTON_LEFT_PIN), b2_(BUTTON_WRITE_PIN) {}
@@ -112,7 +114,7 @@ Event ButtonHandler::checkUserInput() {
 
 
         default:
-        Serial.println("What have you done?");
+        LOG_ERROR("What have you done?");
         break;
     }
 

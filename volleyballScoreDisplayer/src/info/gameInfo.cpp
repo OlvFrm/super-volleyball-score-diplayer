@@ -1,5 +1,6 @@
 #include "info/gameInfo.hpp"
 #include "display/scoreDisplayer.hpp"
+#include "tools/log.hpp"
 
 
 #define DEFAULT_TEAM_A_SIDE LEFT
@@ -66,8 +67,16 @@ void GameInfo::show() {
     ScoreDisplayer::setServeShow(true);
 
     ScoreDisplayer::show();
-}
 
+#ifdef USE_INFO
+    String scoreString = "";
+    scoreString += leftScore.sets_ + " " + leftScore.points_;
+    scoreString += (serveSide_ == LEFT ? " <- " : " -> ");
+    scoreString += rightScore.points_ + " " + rightScore.sets_;
+    LOG_INFO(scoreString);
+#endif
+}
+// + 
 bool GameInfo::scorePoint(Side side) {
 
     Score scoringTeam = getScore(side);
