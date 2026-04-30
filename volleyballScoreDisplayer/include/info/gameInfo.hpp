@@ -28,8 +28,8 @@ private:
     GameInfo();
 
     /* Getters */
-    Score getScore(Side side) const;
-    Score getOtherScore(Side side) const;
+    Score& getScore(Side side);
+    Score& getOtherScore(Side side);
     Side getServeSide() const;
     Side getTeamASide() const;
 

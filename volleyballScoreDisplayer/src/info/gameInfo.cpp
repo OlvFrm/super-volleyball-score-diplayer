@@ -14,11 +14,11 @@ GameInfo::GameInfo():
 
 
 /* Getters */
-Score GameInfo::getScore(Side side) const {
+Score& GameInfo::getScore(Side side) {
     return teamASide_ == side ? scoreA_ : scoreB_;
 }
 
-Score GameInfo::getOtherScore(Side side) const {
+Score& GameInfo::getOtherScore(Side side) {
     return teamASide_ == side ? scoreB_ : scoreA_;
 }
 
@@ -69,20 +69,28 @@ void GameInfo::show() {
     ScoreDisplayer::show();
 
 #ifdef USE_INFO
-    String scoreString = "";
-    scoreString += leftScore.sets_ + " " + leftScore.points_;
-    scoreString += (serveSide_ == LEFT ? " <- " : " -> ");
-    scoreString += rightScore.points_ + " " + rightScore.sets_;
+    char scoreString [9] = "";
+    scoreString[0] = leftScore.points_/10 + '0';
+    scoreString[1] = leftScore.points_%10 + '0';
+    scoreString[2] = ' ';
+    scoreString[3] = serveSide_ == LEFT ? '<' : '-';
+    scoreString[4] = serveSide_ == LEFT ? '-' : '>';
+    scoreString[5] = ' ';
+    scoreString[6] = rightScore.points_/10 + '0';
+    scoreString[7] = rightScore.points_%10 + '0';
+    scoreString[8] = '\0';
     LOG_INFO(scoreString);
 #endif
 }
-// + 
+
+
 bool GameInfo::scorePoint(Side side) {
 
-    Score scoringTeam = getScore(side);
-    Score otherTeam = getOtherScore(side);
+    Score& scoringTeam = getScore(side);
+    Score& otherTeam = getOtherScore(side);
     
     scoringTeam.points_++;
+    serveSide_ = side;
 
     unsigned int pointLimit = 25;
     
