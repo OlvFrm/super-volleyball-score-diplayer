@@ -3,7 +3,7 @@
 
 class GameState;
 
-#define STACK_SIZE  3
+#define STACK_SIZE  10
 
 class LimitedStack {
 

@@ -32,6 +32,7 @@ private:
     Score& getOtherScore(Side side);
     Side getServeSide() const;
     Side getTeamASide() const;
+    unsigned int getSetNumber() const;
 
     /* Setters */
     void setScore(Score score, Side side);

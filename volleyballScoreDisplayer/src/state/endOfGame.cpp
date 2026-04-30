@@ -5,7 +5,7 @@
 
 #define MAX_SET_NUMBER  5
 
-unsigned int EndOfGameState::winningSetIndex_ = 0;
+unsigned int EndOfGameState::numberOfSets_ = 0;
 GameInfo EndOfGameState::winningSets_ [MAX_SET_NUMBER];
 
 
@@ -40,15 +40,14 @@ GameState* EndOfGameState::step(Event e) {
 
 
 void EndOfGameState::addWinningSet(GameInfo winningSet) {
-    if (winningSetIndex_ < MAX_SET_NUMBER) {
-        winningSets_[winningSetIndex_++] = winningSet;
-    }
+    numberOfSets_ = winningSet.getSetNumber() -1; // Offset because called after winning
+    winningSets_[numberOfSets_ -1] = winningSet;
 }
 
 
 void EndOfGameState::showNextSet() {
     winningSets_[showingSetIndex_++].show();
-    if (showingSetIndex_ >= winningSetIndex_) {
+    if (showingSetIndex_ >= numberOfSets_) {
         showingSetIndex_ = 0;
     }
 }

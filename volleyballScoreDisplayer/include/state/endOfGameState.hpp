@@ -8,7 +8,7 @@
 class EndOfGameState: public GameState {
 
 private:
-    static unsigned int winningSetIndex_;
+    static unsigned int numberOfSets_;
     static GameInfo winningSets_[];
 
     unsigned int showingSetIndex_;

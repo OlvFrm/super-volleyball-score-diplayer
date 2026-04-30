@@ -25,6 +25,7 @@ Score& GameInfo::getOtherScore(Side side) {
 Side GameInfo::getServeSide() const { return serveSide_; }
 Side GameInfo::getTeamASide() const { return teamASide_; }
 
+unsigned int GameInfo::getSetNumber() const { return scoreA_.sets_ + scoreB_.sets_ + 1; }
 
 /* Setters */
 void GameInfo::setScore(Score score, Side side) {
@@ -94,7 +95,7 @@ bool GameInfo::scorePoint(Side side) {
 
     unsigned int pointLimit = 25;
     
-    if (scoreA_.sets_ + scoreB_.sets_ + 1 == 5) {
+    if (getSetNumber() == 5) {
         // Last set
         pointLimit = 15;
 
