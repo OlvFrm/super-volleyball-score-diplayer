@@ -4,8 +4,8 @@
 #include "side.hpp"
 
 
-#define DEFAULT_A_COLOR     CRGB::Red
-#define DEFAULT_B_COLOR     CRGB::Blue
+#define DEFAULT_A_COLOR     CRGB::HotPink
+#define DEFAULT_B_COLOR     CRGB::LimeGreen
 
 /* Class that contains the information of the game. */
 class GameInfo {

@@ -29,7 +29,13 @@ GameState* EndOfSetState::step(Event e) {
     long now = millis();
     if (now - lastBlink_ > SET_BLINK_DELAY) {
         offset_ = !offset_;
-        ScoreDisplayer::setLeftSets(gameInfo_.getScore(winningSide_).getSets() - (offset_ ? 1 : 0));
+        unsigned int shownSets = gameInfo_.getScore(winningSide_).getSets() - (offset_ ? 1 : 0);
+        if (winningSide_ == LEFT) {
+            ScoreDisplayer::setLeftSets(shownSets);
+        } else {
+            ScoreDisplayer::setRightSets(shownSets);
+        }
+        ScoreDisplayer::show();
         lastBlink_ = now;
     }
 

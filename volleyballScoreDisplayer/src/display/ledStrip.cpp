@@ -3,6 +3,7 @@
 
 
 #define LED_PIN 5
+#define LED_BRIGHTNESS 100
 
 
 LedStrip::LedStrip(): numLeds_(0), leds_(nullptr) {}
@@ -31,7 +32,7 @@ void LedStrip::init() {
 
     leds_ = new CRGB[numLeds_];
     FastLED.addLeds<WS2812, LED_PIN, GRB>(leds_, numLeds_);
-    FastLED.setBrightness(10);
+    FastLED.setBrightness(LED_BRIGHTNESS);
 }
 
 int LedStrip::getSize() {

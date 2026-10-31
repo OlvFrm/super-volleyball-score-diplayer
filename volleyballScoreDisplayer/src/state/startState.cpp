@@ -35,6 +35,7 @@ GameState* StartState::step(Event e) {
         useTeamAColor_ = !useTeamAColor_;
         ScoreDisplayer::setServeColor(useTeamAColor_ ? DEFAULT_A_COLOR : DEFAULT_B_COLOR);
         ScoreDisplayer::setServeShow(true);
+        ScoreDisplayer::show();
 
         lastBlink_ = now;
     }

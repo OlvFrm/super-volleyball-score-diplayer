@@ -2,7 +2,7 @@
 #include "tools/log.hpp"
 
 
-#define NUM_LEDS_PER_SEGMENT 2
+#define NUM_LEDS_PER_SEGMENT 3
 
 /* Assuming segments are arranged like:
   --2--

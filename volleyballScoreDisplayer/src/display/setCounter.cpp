@@ -3,8 +3,8 @@
 
 #define NUMBER_OF_SET   3
 
-SetCounter::SetCounter():
-    LedDisplayBloc(NUMBER_OF_SET), reversed_(false) {}
+SetCounter::SetCounter(bool isReversed):
+    LedDisplayBloc(NUMBER_OF_SET), reversed_(isReversed) {}
 
 void SetCounter::setReversed(bool reversed) { reversed_ = reversed; }
 
